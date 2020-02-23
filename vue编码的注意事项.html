@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      {{msg}}
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      // 1. 所有需要在界面上展现的数据应该都要在data中定义一遍
+      // 2. 在使用vue开发的过程中; 我们所有的编码一般情况下是不会写在配置对象外部的
+      // 3. 事件对应的回调函数应该注册在配置对象的methods属性中
+      new Vue({
+        el: '#app',
+        data: {
+          msg: '与其感慨路难行，不如即刻出发'
+        },
+        // mounted在整个vue初始化过程中，一定会调用
+        mounted() {
+          setTimeout(() => {
+            // this为vm
+            this.msg = '燃烧殆尽总好过黯然消逝';
+          }, 2000);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-if直接将标签节点删除
+        v-show是display：none
+      -->
+      <span v-if="flag" v-text="msg1"></span>
+      <span v-else-if="flag" v-text="msg2"></span>
+      <span v-else v-text="msg3"></span>
+
+      <span v-show="!flag">----</span>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          flag: false,
+          msg1: '你好吗',
+          msg2: '我很好',
+          msg3: '你呢'
+        }
+      });
+    </script>
+  </body>
+</html>

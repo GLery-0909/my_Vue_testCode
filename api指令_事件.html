@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #app {
+        width: 200px;
+        height: 200px;
+        background: deeppink;
+      }
+      .out {
+        width: 100px;
+        height: 100px;
+        background: hotpink;
+      }
+      .inner {
+        width: 50px;
+        height: 50px;
+        background: pink;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background: skyblue;
+      }
+      .box1 {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- v-on: 可以省略成@ -->
+    <!--
+            stop: 阻止冒泡
+            prevent: 取消事件的默认行为
+            self: 观察事件的触发元素是不是自己
+        -->
+    <div id="test">
+      <div id="app" @click="handleApp">
+        <div class="out" @click.self="handleOut">
+          <div class="inner" @click="handleInner"></div>
+        </div>
+      </div>
+      <!-- .prevent取消事件默认行为 -->
+      <a href="http://www.baidu.com" @click.prevent="handleA">点我去百度</a>
+      <!--
+            .{keyCode | keyAlias} - 只当事件是从特定键触发时才触发回调。
+            13|enter(tab delete esc space up down left  right)
+            .once - 只触发一次回调。
+            .left - (2.2.0) 只当点击鼠标左键时触发。
+            .right - (2.2.0) 只当点击鼠标右键时触发。
+            .middle - (2.2.0) 只当点击鼠标中键时触发。
+        -->
+      <br />
+      <input type="text" @keydown.space="handleKeydown" />
+      <br />
+      <!-- 只触发一次 -->
+      <input type="text" @keydown.once="handleKeydown" />
+      <br />
+      <div class="box" @click.left="handleBox"></div>
+      <div class="box1" @click="handleRed(123,$event)"></div>
+      <!--
+            dom问题?
+                mouseover mouseout
+                mouseenter mouseleave
+                    这两组之间有什么区别?
+                    mouseenter mouseleave 他们是没有冒泡的
+            事件流有几个阶段?
+                捕获 目标处理 冒泡
+            事件委托?
+                事件委托是基于冒泡的;
+                我们可以将一个父元素底下子元素的共性的行为放在父元素身上进行绑定
+        -->
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#test',
+        methods: {
+          handleApp() {
+            console.log('handleApp');
+          },
+          handleOut() {
+            console.log('handleOut');
+          },
+          handleInner() {
+            console.log('handleInner');
+          },
+          handleA() {
+            console.log('handleA');
+          },
+          handleKeydown() {
+            console.log('handleKeydown');
+          },
+          handleBox() {
+            console.log('handleBox');
+          },
+          handleRed(num, ev) {
+            console.log(num, ev);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

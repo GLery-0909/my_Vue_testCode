@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 双大括号里面必须为表达式（大部分有返回值），语句则不行 -->
+      {{msg}}-----{{num + 5}}-----{{flag?'真':'假'}}
+      <br />
+      {{new Date()}}
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          msg: '情歌俩三首',
+          num: 1,
+          flag: true
+        }
+      });
+    </script>
+  </body>
+</html>

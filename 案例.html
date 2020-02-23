@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(item,index) in list">
+          <span>{{item.name}}</span>
+          <span>{{item.age}}</span>
+          <span>{{item.team}}</span>
+          <button @click="listDel(index)">del</button>
+          <button @click="listUpdata(index)">updata</button>
+        </li>
+      </ul>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          list: [
+            {
+              name: '东契奇',
+              age: 20,
+              team: '达拉斯小牛'
+            },
+            {
+              name: '特雷杨',
+              age: 21,
+              team: '亚特兰大老鹰'
+            },
+            {
+              name: '塔图姆',
+              age: 22,
+              team: '波士顿凯尔特人'
+            },
+            {
+              name: '锡安',
+              age: 23,
+              team: '新奥尔良鹈鹕'
+            }
+          ]
+        },
+        methods: {
+          listDel(index) {
+            this.list.splice(index, 1);
+          },
+          //由于js的限制,vue中不能直接通过index去修改数组的数据
+          //如果通过index去修改数组的数据 数据是可以被修改的
+          //但是界面得不到更新 vue的数据会失去响应式的能力
+          //我们应该使用数组的变异方法 才能有效的更新界面
+          listUpdata(index) {
+            this.list.splice(index, 1, {
+              name: '格兰特',
+              age: 23,
+              team: '丹佛掘金'
+            });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

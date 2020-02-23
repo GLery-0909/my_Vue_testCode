@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(item,index) in list">
+          {{index}}---{{item}}
+        </li>
+      </ul>
+      <br />
+      <ul>
+        <li v-for="(val,key,index) in obj">
+          {{index}}---{{key}}---{{val}}
+        </li>
+      </ul>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          list: ['东契奇', '特雷杨', '锡安', '希尔德'],
+          obj: {
+            name: '东契奇',
+            age: '20',
+            team: '达拉斯小牛'
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

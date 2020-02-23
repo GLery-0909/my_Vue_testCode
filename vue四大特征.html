@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="msg" />
+      <br />
+      <p>{{msg}}</p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      /*
+        1. 申明式编程
+            区别于dom编程
+        2. 响应式数据(数据单向流  model --> view)
+            vue data对象的所有属性都会转绑给对应的vue实例
+            data中的所有数据 都是响应式数据 数据的改变会触发界面的更新
+        3. 数据双向流(model --> view  view-->model)
+            v-model 实现了数据双向流
+        4. 数据驱动
+    */
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'Your soul is mine！'
+        }
+      });
+      setTimeout(() => {
+        // vue data对象的属性转绑给对应的vue实例
+        vm.msg = 'its ok!';
+      }, 2000);
+    </script>
+  </body>
+</html>
