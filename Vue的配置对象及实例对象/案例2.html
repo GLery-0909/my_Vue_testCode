@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="val" />
+      <button @click="addList">add</button>
+      <v-list :list="list"></v-list>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            list: ['吃饭', '睡觉', '打豆豆'],
+            val: ''
+          };
+        },
+        methods: {
+          addList() {
+            this.list.push(this.val);
+            this.val = '';
+          }
+        },
+        components: {
+          'v-list': {
+            template: `<ul><li v-for="item in list">{{item}}</li></ul>`,
+            props: ['list']
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

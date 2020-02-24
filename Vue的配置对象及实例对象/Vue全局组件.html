@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"><v-gl></v-gl></div>
+    <div id="app2">
+      <v-gl></v-gl>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      //在子组件中不能使用el配置;因为el配置只能由根组件使用
+      /*
+        因为子组件中没有办法使用el
+            1. 不知道怎么挂载
+                靠匹配组件名(不是挂载 而是覆盖)
+            2. 模板怎么定义
+                通过template来定义
+    */
+      Vue.component('v-gl', {
+        template: `<span>{{msg}}</span>`,
+        /*
+        只有在根组件中 data才允许是一个对象
+        在其他非根组件中data应该定义成一个函数
+            这个函数应该要返回一个对象
+     */
+        data() {
+          return {
+            msg: '摄影艺术'
+          };
+        }
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          msg: '还是分开'
+        }
+      });
+      new Vue({
+        el: '#app2',
+        data: {
+          msg: '不用去猜'
+        }
+      });
+    </script>
+  </body>
+</html>

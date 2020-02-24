@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>姓</span><input type="text" v-model="firstName" /><br />
+      <span>名</span><input type="text" v-model="lastName" /><br />
+      <span>姓名</span><input type="text" v-model="fullName" /><br />
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          firstName: '张',
+          lastName: '志成',
+          fullName: '张-志成'
+        },
+        watch: {
+          firstName(newVal) {
+            this.fullName = `${newVal}-${this.lastName}`;
+          },
+          lastName(newVal) {
+            this.fullName = `${this.firstName}-${newVal}`;
+          }
+        }
+      });
+      // vm.$watch('firstName', function(newVal) {
+      //   this.fullName = `${newVal}-${this.lastName}`;
+      // });
+      // vm.$watch('lastName', function(newVal) {
+      //   this.fullName = `${this.firstName}-${newVal}`;
+      // });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      APP
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          obj: {
+            hero: '黑暗贤者',
+            team: '夜宴'
+          }
+        }
+      });
+      console.log(vm.$root); //vm
+      console.log(vm.$el); //元素节点
+      console.log(vm.$options);
+      console.log(vm.$data.obj.team);
+    </script>
+  </body>
+</html>

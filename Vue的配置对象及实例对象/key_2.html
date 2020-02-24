@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <!-- 
+          如果不加: 则所有的key的值都为index
+          加上: 则每个key都会被vue解析为独一无二的
+        -->
+        <li v-for="(item,index) in list" :key="index">
+          {{item}}
+        </li>
+      </ul>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          list: ['幻影刺客', '变体精灵', '黑暗游侠', '娜迦海妖']
+        }
+      });
+    </script>
+  </body>
+</html>
