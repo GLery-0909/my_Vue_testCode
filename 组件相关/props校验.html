@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .skyblue {
+        width: 100px;
+        height: 100px;
+        background: skyblue;
+        border-radius: 50%;
+        line-height: 100px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <v-gl class="skyblue" :num="num"></v-gl>
+      <v-gl class="skyblue" :num="num"></v-gl>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          num: 1000
+        },
+        components: {
+          'v-gl': {
+            props: {
+              num: {
+                type: Number,
+                // default默认值
+                // 一般required和default不会一起使用
+                required: true,
+                // 校验的方法
+                validator: function(value) {
+                  return value > 100;
+                }
+              }
+            },
+            data() {
+              return {
+                glNum: this.num
+              };
+            },
+            template: '<div @click="handleC">{{glNum}}</div>',
+            methods: {
+              handleC() {
+                console.log(this);
+                this.glNum++;
+              }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

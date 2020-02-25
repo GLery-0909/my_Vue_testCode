@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .skyblue {
+        color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!--class : 非props特性的属性   组件会继承非props特性的属性-->
+      <!--name  : props特性的属性     组件不会继承props特性的属性-->
+      <v-gl class="skyblue" name="glery"></v-gl>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        components: {
+          'v-gl': {
+            props: ['name'],
+            template: '<span>{{name}}</span>'
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

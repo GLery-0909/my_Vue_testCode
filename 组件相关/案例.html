@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <v-gl msg="东契奇"></v-gl>
+      <v-gl msg="特雷杨"></v-gl>
+      <v-gl msg="塔图姆"></v-gl>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      const glery = {
+        props: ['msg'],
+        data() {
+          return {
+            glMsg: this.msg
+          };
+        },
+        template: '<span @click="handleC">{{glMsg}}</span>',
+        mounted() {
+          this.bus.$on('change', msg => {
+            this.glMsg = msg;
+          });
+        },
+        methods: {
+          handleC() {
+            this.bus.$emit('change', this.glMsg);
+          }
+        }
+      };
+      Vue.prototype.bus = new Vue();
+      new Vue({
+        el: '#app',
+        components: {
+          'v-gl': glery
+        }
+      });
+    </script>
+  </body>
+</html>

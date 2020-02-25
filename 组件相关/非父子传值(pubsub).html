@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <v-a></v-a>
+      <v-b></v-b>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="https://cdn.bootcss.com/pubsub-js/1.7.0/pubsub.min.js"></script>
+    <script>
+      const a = {
+        data() {
+          return {
+            msg: '你好吗'
+          };
+        },
+        template: '<i>{{msg}}</i>',
+        mounted() {
+          PubSub.subscribe('changeText', (name, msg) => {
+            console.log(name);
+            this.msg = msg;
+          });
+        }
+      };
+      const b = {
+        data() {
+          return {
+            msg: '都挺好'
+          };
+        },
+        template: '<i @click="handleC">{{msg}}</i>',
+        methods: {
+          handleC() {
+            PubSub.publish('changeText', this.msg);
+          }
+        }
+      };
+      // 在构造函数的原型对象上定义一个实例
+      new Vue({
+        el: '#app',
+        components: {
+          'v-a': a,
+          'v-b': b
+        }
+      });
+    </script>
+  </body>
+</html>

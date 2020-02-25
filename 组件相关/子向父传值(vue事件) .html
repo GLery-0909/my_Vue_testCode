@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .skyblue {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background: skyblue;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <v-gl class="skyblue" :num="num" @count="count"></v-gl>
+      <v-gl class="skyblue" :num="num" @count="count"></v-gl>
+      <div class="skyblue" style="background: yellowgreen;">{{appNum}}</div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      const gl = {
+        props: {
+          num: Number
+        },
+        data() {
+          return {
+            glNum: this.num,
+            step: 1
+          };
+        },
+        template: '<div @click="handleC">{{glNum}}</div>',
+        methods: {
+          handleC() {
+            console.log(this);
+            this.glNum += this.step;
+            this.$emit('count', this.step);
+          }
+        }
+      };
+
+      new Vue({
+        el: '#app',
+        data: {
+          num: 0,
+          appNum: 0
+        },
+        methods: {
+          count(step) {
+            this.appNum += step;
+          }
+        },
+        components: {
+          'v-gl': gl
+        }
+      });
+    </script>
+  </body>
+</html>
